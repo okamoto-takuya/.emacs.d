@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+
+int main()
+{
+
+  const char* const CSTR = "abcdefg";
+
+
+  std::string str1(5, 'a');
+  // 5個の 'a' で初期化
+  std::string str2(CSTR, 5);
+  // CSTR の先頭 5文字分で初期化
+  std::string str3(str2);
+  // str2 と同じ内容で初期化（コピー）
+  std::string str4(str2, 1);
+  // str2[1] 以降の文字列で初期化
+  std::string str5(str2, 1, 3);
+  // str2[1] からの 3文字分で初期化
+  std::string str6(&CSTR[3], &CSTR[6]);
+  // CSTR[3]～CSTR[5] の範囲の文字列で初期化
+
+  std::cout << str1 << "\n"
+            << str2 << "\n"
+            << str3 << "\n"
+            << str4 << "\n"
+            << str5 << "\n

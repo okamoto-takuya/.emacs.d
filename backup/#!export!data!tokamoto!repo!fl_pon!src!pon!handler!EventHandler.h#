@@ -1,0 +1,43 @@
+#ifndef PON_HANDLER_EVENT_HANDLER_H
+#define PON_HANDLER_EVENT_HANDLER_H
+
+#include <string>
+#include <vector>
+#include <list>
+#include <iostream>
+#include <assert.h>
+
+#include <thread/ConditionKeeper.h>
+
+#include <zmqpp/zmqpp.hpp>
+
+namespace pon
+{
+namespace handler
+{
+class EventHandler
+{
+  // This is for UnitTest to evaluate private.
+  friend class EventHandler_test;
+
+private:
+  std::string name_;
+  std::shared_ptr<pon::thread::ConditionKeeper> keeper_;
+
+public:
+  EventHandler(std::string name);
+
+  void addConditionKeeper(const std::shared_ptr<pon::thread::ConditionKeeper>& keeper); 
+
+  std::string const& name() const
+  {
+    return name_;
+  }
+
+  virtual void ProcessMessage(zmqpp::message& msg)=0;
+
+};
+
+l}  // namespace handler
+}  // namespace pon
+#endif
